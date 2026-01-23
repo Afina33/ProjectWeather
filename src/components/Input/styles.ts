@@ -20,10 +20,15 @@ const generateInputBorder = (
 };
 
 export const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  width: 100%;
+    width: 100%;
+    height: 48px;
+    border: 1px solid #fff;
+    backdrop-filter: blur(16px);
+    background-color: #ffffff28;
+    border-radius: 40px;
+    color: rgb(255, 255, 255);
+    padding: 12px 20px;
+    font-size: 20px;
 `;
 
 export const InputLabel = styled.label`
