@@ -45,7 +45,7 @@ export const NavigationContainer = styled.nav`
 
 export const HeaderLink = styled(NavLink)`
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 200;
   text-decoration: none;
   color: white;
 `;
@@ -53,7 +53,7 @@ export const HeaderLink = styled(NavLink)`
 export const Main = styled.main`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     gap: 60px;
     padding: 140px;
