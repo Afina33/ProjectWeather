@@ -9,8 +9,7 @@ import { useAppDispatch } from "store/hooks"
 import { useFormik } from "formik"
 import Input from "components/Input/Input"
 import * as Yup from "yup"
-import Button from "components/Button/Button"
-import { FormStyle, InputContainer, ButtonStyle, InputStyle } from "./styles"
+import { FormStyle, InputContainer, Button, Input } from "./styles"
 import { employeeSliceAction } from "store/redux/weatherSlice/weatherSlice"
 
 const validationSchema = Yup.object().shape({
