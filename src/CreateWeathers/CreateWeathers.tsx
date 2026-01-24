@@ -1,12 +1,12 @@
-// const weatherInitialState = {
-// error: undefined.
-// currentWeather: undefined,
-// weatherData: []
-// }
+// // const weatherInitialState = {
+// // error: undefined.
+// // currentWeather: undefined,
+// // weatherData: []
+// // }
 
 import { CITY_FORM_VALUE } from "./types"
 import { useAppDispatch } from "store/hooks"
-import { Form, useFormik } from "formik"
+import { useFormik } from "formik"
 import Input from "components/Input/Input"
 import * as Yup from "yup"
 import Button from "components/Button/Button"
@@ -37,7 +37,7 @@ export default function CreateWeathers() {
       <InputContainer>
         <InputStyle>
           <Input
-            id=""
+            id={CITY_FORM_VALUE.CITY}
             name={CITY_FORM_VALUE.CITY}
             placeholder="Enter city"
             label=""
@@ -46,9 +46,11 @@ export default function CreateWeathers() {
           />
         </InputStyle>
         <ButtonStyle>
-          <Button type="submit" name={"Search"}></Button>
+          <Button type="submit" name={"Search"}/>
         </ButtonStyle>
       </InputContainer>
     </FormStyle>
   )
 }
+
+
