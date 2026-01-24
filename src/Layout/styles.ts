@@ -3,26 +3,26 @@ import bgImage from "..//assets/Вставленное изображение.pn
 import { NavLink, type NavLinkRenderProps } from "react-router-dom";
 
 export const LayoutWrapper = styled.div`
-  display: flex;
+   display: flex;
   flex-direction: column;
+  
   flex: 1;
+  background-image: url(${bgImage});
+  background-size: cover;
+  background-position: center;
 `;
 
 
 
 export const Header = styled.header`
-    width: 100%;
-    min-height: 80px;
-     background: rgba(20, 40, 60, 0.70); /* обязательно с прозрачностью */
-    backdrop-filter: blur(15px) saturate(120%);
-    -webkit-backdrop-filter: blur(16px) saturate(120%);
-    border-bottom: 1px solid #D2D2D2;
-    color: #fff;
-    display: flex;
-    justify-content: space-around;
-    padding: 25.5px;
-    font-size: 24px;
-    font-weight: bold;
+   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 80px;
+  border-bottom: 2px solid black;
+  padding: 42px 84px;
+  background-color: #122D4D80;
+  border-color: #D2D2D2;
 `;
 
 export const Logo = styled.div`
@@ -57,10 +57,7 @@ export const Main = styled.main`
     align-items: center;
     gap: 60px;
     padding: 140px;
-    background-image: url(${bgImage});
-  background-repeat: no-repeat;
-  background-size: cover;
-  flex: 1;
+    flex: 1;
 `;
 
 
