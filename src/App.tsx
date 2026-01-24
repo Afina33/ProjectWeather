@@ -3,7 +3,7 @@ import { ROUTES } from "constants/routes"
 import Layout from "./Layout/Layout"
 import Home from "./Home/Home"
 import Weathers from "./Weathers/Weathers"
-import CreateWeathers from "CreateWeathers/CreateWeathers"
+
 
 function App() {
   return (
@@ -12,13 +12,12 @@ function App() {
         <Routes>
           <Route path={ROUTES.ERROROUTPUT} element="Page Not Found" />
           <Route path={ROUTES.HOME} element={<Home/>}/>
-          <Route path={ROUTES.CREATEWEATHERS} element={<CreateWeathers />} />
           <Route path={ROUTES.WEATHERS} element={<Weathers/>}/>
         </Routes>
       </Layout>
     </BrowserRouter>
   )
-  
+
 }
 
 export default App
