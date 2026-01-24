@@ -4,18 +4,18 @@ import { PayloadAction } from "@reduxjs/toolkit"
 import { currentWeather } from "Layout/types"
 
 
-
-
 const weatherInitialState:  weatherInitialState  = {
   error: undefined,
   currentWeather: undefined,
-  weatherData:[]
-}
+  weatherData:[],
+  city:  "",
+};
 
 export const weatherSlice  = createAppSlice({
   name: "WEATHER_CARD",
   initialState: weatherInitialState,
   reducers:{
+    setCity: (state, action : PayloadAction<string>)=> {state.city = action.payload},
     personCard: (state: weatherInitialState, action: PayloadAction<currentWeather>) => {
       state.weatherData.push(action.payload);
     },

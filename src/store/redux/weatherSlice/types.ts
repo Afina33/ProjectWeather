@@ -5,4 +5,5 @@ export interface weatherInitialState{
     error: undefined,
     currentWeather: undefined,
     weatherData: currentWeather [],
+    city: string,
 }

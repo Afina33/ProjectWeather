@@ -1,16 +1,13 @@
-
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { ROUTES } from "constants/routes"
 import Layout from "./Layout/Layout"
 import Home from "./Home/Home"
 import Weathers from "./Weathers/Weathers"
-import Input from "components/Input/Input"
 
 
 function App() {
   return (
-    <BrowserRouter>      
-  
+    <BrowserRouter>
       <Layout>
         <Routes>
           <Route path={ROUTES.ERROROUTPUT} element="Page Not Found" />
@@ -20,6 +17,7 @@ function App() {
       </Layout>
     </BrowserRouter>
   )
+
 }
 
 export default App
