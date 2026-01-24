@@ -1,12 +1,13 @@
-// const weatherInitialState = {
-// error: undefined.
-// currentWeather: undefined,
-// weatherData: []
-// }
+// // const weatherInitialState = {
+// // error: undefined.
+// // currentWeather: undefined,
+// // weatherData: []
+// // }
 
 import { CITY_FORM_VALUE } from "./types"
 import { useAppDispatch } from "store/hooks"
 import { useFormik } from "formik"
+import Input from "components/Input/Input"
 import * as Yup from "yup"
 import { FormStyle, InputContainer, Button, Input } from "./styles"
 import { employeeSliceAction } from "store/redux/weatherSlice/weatherSlice"
@@ -33,17 +34,22 @@ export default function CreateWeathers() {
   return (
     <FormStyle onSubmit={formik.handleSubmit}>
       <InputContainer>
-        <Input
-          id=""
-          name={CITY_FORM_VALUE.CITY}
-          placeholder="  Enter city"
-          value={formik.values[CITY_FORM_VALUE.CITY]}
-          onChange={formik.handleChange}
-        />
-        <Button type="submit" name="Search">
-          Search
-        </Button>
+        <InputStyle>
+          <Input
+            id={CITY_FORM_VALUE.CITY}
+            name={CITY_FORM_VALUE.CITY}
+            placeholder="Enter city"
+            label=""
+            value={formik.values[CITY_FORM_VALUE.CITY]}
+            onChange={formik.handleChange}
+          />
+        </InputStyle>
+        <ButtonStyle>
+          <Button type="submit" name={"Search"}/>
+        </ButtonStyle>
       </InputContainer>
     </FormStyle>
   )
 }
+
+
