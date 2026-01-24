@@ -6,11 +6,9 @@
 
 import { CITY_FORM_VALUE } from "./types"
 import { useAppDispatch } from "store/hooks"
-import { Form, useFormik } from "formik"
-import Input from "components/Input/Input"
+import { useFormik } from "formik"
 import * as Yup from "yup"
-import Button from "components/Button/Button"
-import { FormStyle, InputContainer, ButtonStyle, InputStyle } from "./styles"
+import { FormStyle, InputContainer, Button, Input } from "./styles"
 import { employeeSliceAction } from "store/redux/weatherSlice/weatherSlice"
 
 const validationSchema = Yup.object().shape({
@@ -35,19 +33,16 @@ export default function CreateWeathers() {
   return (
     <FormStyle onSubmit={formik.handleSubmit}>
       <InputContainer>
-        <InputStyle>
-          <Input
-            id=""
-            name={CITY_FORM_VALUE.CITY}
-            placeholder="Enter city"
-            label=""
-            value={formik.values[CITY_FORM_VALUE.CITY]}
-            onChange={formik.handleChange}
-          />
-        </InputStyle>
-        <ButtonStyle>
-          <Button type="submit" name={"Search"}></Button>
-        </ButtonStyle>
+        <Input
+          id=""
+          name={CITY_FORM_VALUE.CITY}
+          placeholder="  Enter city"
+          value={formik.values[CITY_FORM_VALUE.CITY]}
+          onChange={formik.handleChange}
+        />
+        <Button type="submit" name="Search">
+          Search
+        </Button>
       </InputContainer>
     </FormStyle>
   )
