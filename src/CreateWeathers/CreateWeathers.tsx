@@ -1,8 +1,3 @@
-const weatherInitialState = {
-error: undefined.
-currentWeather: undefined,
-weatherData: []
-}
 import axios from "axios"
 import { CITY_FORM_VALUE } from "./types"
 import { useAppDispatch, useAppSelector } from "store/hooks"
@@ -47,10 +42,10 @@ export default function CreateWeathers() {
     validateOnChange: false,
 
     onSubmit: async values => {
-      if (!values[CITY_FORM_VALUE.CITY].trim()) {
-        alert("Пожалуйста, введите название города")
-        return
-      }
+      // if (!values[CITY_FORM_VALUE.CITY].trim()) {
+      //   alert("Пожалуйста, введите название города")
+      //   return
+      // }
 
       try {
         const response = await axios.get(
@@ -76,7 +71,8 @@ export default function CreateWeathers() {
         // Сохраняем только один объект
         dispatch(employeeSliceAction.setCurrentWeather(weatherCard))
       } catch (error: any) {
-        alert(error.response?.data?.message || "Ошибка запроса")
+        // alert(error.response?.data?.message || "Ошибка запроса")
+        dispatch(employeeSliceAction.setError(error));
       }
     },
   })
