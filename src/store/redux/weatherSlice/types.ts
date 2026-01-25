@@ -1,3 +1,6 @@
+export type WeatherState = {
+  error: string | null;
+};
 import { type currentWeather } from "../..//..//Layout/types"
 
 export interface weatherInitialState {

@@ -1,3 +1,8 @@
+const weatherInitialState = {
+error: undefined.
+currentWeather: undefined,
+weatherData: []
+}
 import axios from "axios"
 import { CITY_FORM_VALUE } from "./types"
 import { useAppDispatch, useAppSelector } from "store/hooks"
