@@ -1,9 +1,8 @@
-import { type currentWeather} from "../..//..//Layout/types"
+import { type currentWeather } from "../..//..//Layout/types"
 
-
-export interface weatherInitialState{
-    error: undefined,
-    currentWeather: undefined,
-    weatherData: currentWeather [],
-    city: string,
+export interface weatherInitialState {
+  error?: string
+  currentWeather?: currentWeather // объект текущей погоды
+  weatherData: currentWeather[] // можно оставить для истории
+  city: string
 }

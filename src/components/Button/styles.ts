@@ -4,14 +4,15 @@ interface ButtonComponentProps {
   $isRed: boolean;
 }
 
-const generateButtonColor = (isRed: boolean, disabled: boolean | undefined) => {
+const generateButtonColor = (isRed: boolean, disabled: boolean | undefined, ) => {
   if (disabled) {
     return "#acacacff";
   } else {
     if (isRed) {
       return "#fc3333ff" ;
-    } else {
-      return "#1f27f5";
+    }
+    else {
+      return "#3678B4";
     }
   }
 };
@@ -19,15 +20,16 @@ const generateButtonColor = (isRed: boolean, disabled: boolean | undefined) => {
 
 const generateButtonColorOnHover = (
   isRed: boolean,
-  disabled: boolean | undefined
+  disabled: boolean | undefined,
 ) => {
   if (disabled) {
     return "#acacacff";
   } else {
     if (isRed) {
       return "#ff6868ff";
-    } else {
-      return "rgb(97, 102, 255)";
+    }
+     else {
+      return "#4c84b7";
     }
   }
 };
@@ -41,8 +43,9 @@ export const ButtonComponent = styled.button<ButtonComponentProps>`
   padding: 0;
   height: 50px;
   width: 100%;
+  border-radius: 50px;
   background-color: ${({ $isRed, disabled }) =>
-    generateButtonColor($isRed, disabled)};
+    generateButtonColor($isRed, disabled, )};
   color: #ffffff;
   font-size: 20px;
   font-weight: bold;
@@ -50,6 +53,6 @@ export const ButtonComponent = styled.button<ButtonComponentProps>`
 
   &:hover {
     background-color: ${({ $isRed, disabled }) =>
-      generateButtonColorOnHover($isRed, disabled)};
+      generateButtonColorOnHover($isRed, disabled, )};
   }
 `;

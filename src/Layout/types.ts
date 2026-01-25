@@ -7,5 +7,6 @@ export interface LayoutProps {
 export interface currentWeather {
   id: string;
   city: string;
-  сelsius: string;
+  celsius: number;
+  icon: string;
 }

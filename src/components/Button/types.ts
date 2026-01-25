@@ -6,4 +6,5 @@ export interface ButtonProps {
   onClick?: () => void;
   isRed?: boolean;
   isDisabled?: boolean;
+  isTransparent?: boolean;
 }

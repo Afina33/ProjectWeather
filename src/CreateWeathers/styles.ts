@@ -1,37 +1,79 @@
 import styled from "@emotion/styled";
+
 export const FormStyle = styled.form`
   display: flex;
  justify-content: center;
-  margin-top: 100px;
+ flex-direction: column;
+ gap: 120px
+
 `;
 
 export const InputContainer = styled.div`
 display: flex;
-gap: 10px;
+gap: 14px;
 justify-content: center;
-padding: 15px;
 `;
 
-export const Button = styled.button`
-padding: 12px, 18px;
-width: 100px;
-font-size: 16px;
-border-radius: 40px;
-border: none;
-cursor: pointer;
-color: #fff;
-background-color: #3f51b5;
-
+export const ButtonStyle = styled.div`
+display: flex;
+width: 146px;
 `;
-export const Input = styled.input`
-background-color: rgba(0, 0, 0, 0.4);
-caret-color: black;
-border-radius: 40px;
-height: 40px;
-width: 440px;
-padding: 12px, 14px;
-font-size: 16px;
-color: #fff;
-border: none;
-outline: none;
+
+export const OutputDiv = styled.div`
+  max-width: fit-content;
+  min-width: 709px;
+  min-height: 220px;
+  max-height: fit-content;
+  display: flex;
+  background: linear-gradient(to right, rgba(47, 72, 111, 0.5), rgba(11, 27, 52, 0.5));
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  padding: 27px 36px;
+  gap: 42px;
+  color: white;
+  align-items: center;
+  flex-direction: column;
+`;
+
+export const DivWrapper = styled.div`
+  display: flex;
+  gap: 165px
+`;
+
+export const CityName = styled.p`
+  font-size: 20px;
+  font-weight: 700;
+`; 
+
+export const CelsiusTeitel = styled.p`
+  font-size: 57px;
+  font-weight: 500;
+`;
+
+export const CityCelsiusWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+export const GetImg = styled.img`
+  
+`;
+
+export const ImgWapper = styled.div`
+  width: 290px;
+  height: 74px;
+  display: flex;
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 95px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const WidthButton = styled.div`
+  width: 155px;
 `;
