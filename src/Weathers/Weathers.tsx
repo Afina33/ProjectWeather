@@ -1,9 +1,10 @@
 
+import OutputWeathers from '../outputWeathers/outputWeathers'
 
 export default function Weathers() {
     return(
         <div>
-            Weathers Page
+            <OutputWeathers/> 
         </div>
     );
 }
