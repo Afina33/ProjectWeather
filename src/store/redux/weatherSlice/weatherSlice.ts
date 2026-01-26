@@ -1,28 +1,21 @@
 import { createAppSlice } from "store/createAppSlice";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { currentWeather } from "Layout/types";
+import  {type weatherInitialState} from "./types"
 
-export interface weatherInitialState {
-  error?: string | null;
-  currentWeather?: currentWeather; // объект текущей погоды
-  weatherData: currentWeather[]; // можно оставить для истории
-  city: string;
-}
 
 const weatherInitialState: weatherInitialState = {
   error: undefined,
   currentWeather: undefined,
   weatherData: [],
-  city: "",
+
 };
 
 export const weatherSlice = createAppSlice({
   name: "WEATHER_CARD",
   initialState: weatherInitialState,
   reducers: {
-    setCity: (state, action: PayloadAction<string>) => {
-      state.city = action.payload;
-    },
+
 
     // Новый экшен для одной карточки
     setCurrentWeather: (state, action: PayloadAction<currentWeather>) => {
@@ -39,15 +32,18 @@ export const weatherSlice = createAppSlice({
         card => card.id !== action.payload
       );
     },
-    setError(state, action: PayloadAction<string | null>) {
-      state.error = action.payload
+    setError(state, action: PayloadAction<undefined>) {
+      state.error = action.payload;
+      // state.currentWeather = undefined; // для очистки поля если будет ошибка
     },
     clearError(state) {
       state.error = undefined
     },
 
-    deleteCards: () => weatherInitialState,
-    // deleteError: () => weatherInitialState,
+  deleteCards(state) {
+  state.weatherData = []
+}
+
   },
 
   selectors: {
