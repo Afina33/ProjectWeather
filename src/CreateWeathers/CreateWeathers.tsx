@@ -19,9 +19,12 @@ import {
   WidthButton
 } from "./styles"
 import { v4 } from "uuid"
-import { employeeSliceAction } from "store/redux/weatherSlice/weatherSlice"
+import { employeeSliceAction, weatherSlice } from "store/redux/weatherSlice/weatherSlice"
 import Button from "components/Button/Button"
 import { ErrorOutput } from "../ErrorOutput/ErrorOutput"
+import { currentWeather } from "Layout/types"
+
+
 
 const validationSchema = Yup.object().shape({
   [CITY_FORM_VALUE.CITY]: Yup.string().required("Введите город"),
@@ -56,7 +59,7 @@ export default function CreateWeathers() {
 
         const data = response.data
 
-        const weatherCard = {
+        const CityData = {
           id: v4(),
           city: data.name,
           celsius: data.main.temp,
@@ -64,13 +67,27 @@ export default function CreateWeathers() {
         }
 
         // Сохраняем только один объект
-        dispatch(employeeSliceAction.setCurrentWeather(weatherCard))
+        dispatch(employeeSliceAction.setCurrentWeather(CityData))
       } catch (error: any) {
         alert("Пожалуйста, введите название города")
         dispatch(employeeSliceAction.setError(error));
       }
     },
   })
+  
+  const onDelete = (cityWeather: currentWeather) => {
+    if (!cityWeather.id) return;
+    dispatch(employeeSliceAction.deleteCard(cityWeather.id))
+    dispatch(employeeSliceAction.clearCurrentWeather())
+  }
+
+  const onSave = () => {
+  if (!currentWeather) return;
+  dispatch(employeeSliceAction.saveWeater(currentWeather));
+  dispatch(employeeSliceAction.clearCurrentWeather());
+  alert("Информация сохранена");
+};
+
 
   return (
     <FormStyle onSubmit={formik.handleSubmit}>
@@ -114,12 +131,12 @@ export default function CreateWeathers() {
               </ImgWapper>
           </DivWrapper>
           <ButtonWrapper>
-            <WidthButton><Button type="submit" name={"Save"} /></WidthButton>
-            <WidthButton><Button type="submit" name={"Delete"} /></WidthButton>
+            <WidthButton><Button type="button" name={"Save"} onClick={onSave} /></WidthButton>
+            <WidthButton><Button type="button" name={"Delete"} onClick={() => onDelete(currentWeather!)} /></WidthButton>
           </ButtonWrapper>
         </OutputDiv>
       )}
-      {error &&   <ErrorOutput/>}
+      {!error && <ErrorOutput/>}
     </FormStyle>
   )
 }

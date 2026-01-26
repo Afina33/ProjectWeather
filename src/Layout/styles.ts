@@ -23,6 +23,7 @@ export const Header = styled.header`
   padding: 42px 84px;
   background-color: #122D4D80;
   border-color: #D2D2D2;
+  color: white;
 `;
 
 export const Logo = styled.div`

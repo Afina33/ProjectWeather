@@ -19,7 +19,7 @@ export function ErrorOutput() {
       <ErrorTitle>Ошибка</ErrorTitle>
       <ErrorText>{error}</ErrorText>
 
-      <DeleteButton type="button" onClick={handleDeleteError}>
+      <DeleteButton  onClick={handleDeleteError}>
         Delete
       </DeleteButton>
     </ErrorWrapper>
