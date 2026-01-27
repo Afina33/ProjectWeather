@@ -1,7 +1,7 @@
 import { type ButtonProps } from "./types";
 import { ButtonComponent } from "./styles";
 
-function Button({
+export default function Button({
   name,
   type = "button",
   onClick,
@@ -23,4 +23,4 @@ function Button({
   );
 }
 
-export default Button;
+

@@ -1,7 +1,8 @@
 import { employeeSliceAction, } from "store/redux/weatherSlice/weatherSlice";
 import { useAppDispatch, useAppSelector } from "store/hooks";
 
-import { DeleteButton, ErrorText, ErrorTitle, ErrorWrapper } from "./styles";
+import { DeleteButton, ErrorText, ErrorTitle, ErrorWrapper, WrapperErrorDiv} from "./styles";
+import Button from "..//components/Button/Button";
 
 export function ErrorOutput() {
   const dispatch = useAppDispatch();
@@ -16,11 +17,12 @@ export function ErrorOutput() {
 
   return (
     <ErrorWrapper>
-      <ErrorTitle>Ошибка</ErrorTitle>
-      <ErrorText>{error}</ErrorText>
-
-      <DeleteButton  onClick={handleDeleteError}>
-        Delete
+      <WrapperErrorDiv>
+        <ErrorTitle>API Error</ErrorTitle>
+        <ErrorText>{error}</ErrorText>
+      </WrapperErrorDiv>
+      <DeleteButton>
+        <Button type="button" name={"Delete"} onClick={handleDeleteError}  weatherB/>
       </DeleteButton>
     </ErrorWrapper>
   );

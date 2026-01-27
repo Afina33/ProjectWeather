@@ -16,14 +16,10 @@ export const weatherSlice = createAppSlice({
   name: "WEATHER_CARD",
   initialState: weatherInitialState,
   reducers: {
-
-
-    // Новый экшен для одной карточки
     setCurrentWeather: (state, action: PayloadAction<currentWeather>) => {
       state.currentWeather = action.payload;
     },
 
-    // Можно оставить для истории
     saveWeater: (state, action: PayloadAction<currentWeather>) => {
       state.weatherData.push(action.payload);
     },

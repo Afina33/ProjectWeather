@@ -1,3 +1,5 @@
+import ImgSunrise from "..//assets/23.png"
+import ImgSunset from "..//assets/закат.png"
 import { useAppDispatch, useAppSelector } from "store/hooks"
 import {
   OutputWeathersWrapper,
@@ -9,16 +11,28 @@ import {
   CelsiusTeitel,
   CityCelsiusWrapper,
   CityName,
+  DataCityDiv,
+  DataUotputDiv,
   DivWrapper,
   GetImg,
+  ImgSin,
   ImgWapper,
+  OutputP,
+  SunDiv,
+  TitelData,
   WidthButton,
+  WrapperSun,
 } from "../CreateWeathers/styles"
 import Button from "components/Button/Button"
 
 import { employeeSliceAction } from "store/redux/weatherSlice/weatherSlice"
 
 export default function OutputWeathers() {
+   const formatTime = (timestamp: number) =>
+    new Date(timestamp * 1000).toLocaleTimeString("ru-RU", {
+      hour: "2-digit",
+      minute: "2-digit",
+    })
   const dispatch = useAppDispatch()
   const weatherList = useAppSelector(state => state.WEATHER_CARD.weatherData)
 
@@ -55,7 +69,55 @@ export default function OutputWeathers() {
               />
             </ImgWapper>
           </DivWrapper>
-
+           <DataUotputDiv>
+            <DataCityDiv>
+              <DataCityDiv></DataCityDiv>
+              <OutputP>Feels like:</OutputP>
+              <TitelData >{weather.FeelsLike}</TitelData >
+              </DataCityDiv>
+            <WrapperSun >
+            <SunDiv>
+              <ImgSin src={ImgSunrise} alt="sun" />
+              <TitelData >{formatTime(weather.sunrise)}</TitelData >
+            </SunDiv>
+            <SunDiv>
+              <ImgSin src={ImgSunset} alt="sun" />
+              <TitelData >{formatTime(weather.sunset)}</TitelData >
+            </SunDiv>
+            </WrapperSun>
+          </DataUotputDiv>
+          <DataUotputDiv>
+            <DataCityDiv>
+              <OutputP>Temp min:</OutputP>
+              <TitelData >{weather.tempMin}</TitelData >
+            </DataCityDiv>
+            <DataCityDiv>
+              <OutputP>Temp max:</OutputP>
+              <TitelData >{weather.tempMax}</TitelData >
+            </DataCityDiv>
+          </DataUotputDiv>
+          <DataUotputDiv>
+            <DataCityDiv>
+                <OutputP>Pressure:</OutputP>
+                <TitelData >{weather.pressure}</TitelData >
+            </DataCityDiv>
+            <DataCityDiv>
+              <OutputP>Visibility:</OutputP>
+              <TitelData >{weather.visibility}</TitelData >
+         </DataCityDiv>
+          </DataUotputDiv>
+          <DataUotputDiv>
+          <DataCityDiv>
+              <OutputP>Speed:</OutputP>
+              <TitelData >{weather.speed}</TitelData>
+          </DataCityDiv>
+          <DataCityDiv>
+            <OutputP>Deg:</OutputP>
+          <TitelData >{weather.deg}</TitelData >
+          </DataCityDiv>
+          </DataUotputDiv>
+          <OutputP>Humidity:</OutputP>
+          <TitelData >{weather.humidity}</TitelData >
           <ButtonWrapper>
             <WidthButton>
               <Button

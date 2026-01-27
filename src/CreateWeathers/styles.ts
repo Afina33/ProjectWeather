@@ -1,11 +1,45 @@
 import styled from "@emotion/styled";
-
 export const FormStyle = styled.form`
   display: flex;
  justify-content: center;
  flex-direction: column;
- gap: 120px
+ gap: 120px;
+`;
+export const WrapperSun = styled.div`
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+`;
+export const ImgSin = styled.img`
+  width: 70px;
+`;
 
+export const SunDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+`;
+export const OutputP = styled.p`
+  font-size: 25px;
+`;
+export const DataUotputDiv = styled.div`
+  display: flex;
+  gap: 100px;
+  align-items: center;
+  
+`;
+export const DataCityDiv = styled.div`
+  display: flex;
+  gap: 25px;
+  flex-direction: column;
+  text-align: center;
+  
+`;
+
+export const TitelData = styled.div`
+ font-size: 20px;
 `;
 
 export const InputContainer = styled.div`

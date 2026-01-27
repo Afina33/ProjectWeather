@@ -1,3 +1,6 @@
+import ImgSunrise from "..//assets/23.png"
+import ImgSunset from "..//assets/закат.png"
+
 import axios from "axios"
 import { CITY_FORM_VALUE } from "./types"
 import { useAppDispatch, useAppSelector } from "store/hooks"
@@ -17,16 +20,19 @@ import {
   ButtonWrapper,
   DivWrapper,
   WidthButton,
+  SunDiv,
+  ImgSin,
+  WrapperSun,
+  OutputP,
+  TitelData,
+  DataUotputDiv,
+  DataCityDiv,
 } from "./styles"
 import { v4 } from "uuid"
-import {
-  employeeSliceAction,
-  weatherSlice,
-} from "store/redux/weatherSlice/weatherSlice"
+import { employeeSliceAction } from "store/redux/weatherSlice/weatherSlice"
 import Button from "components/Button/Button"
 import { ErrorOutput } from "../ErrorOutput/ErrorOutput"
 import { currentWeather } from "Layout/types"
-
 
 const validationSchema = Yup.object().shape({
   [CITY_FORM_VALUE.CITY]: Yup.string().required("Введите город").trim(),
@@ -34,6 +40,12 @@ const validationSchema = Yup.object().shape({
 
 export default function CreateWeathers() {
   const API_KEY = "d379bb13b3ab34d224e5961a0fbaf3d8"
+
+ const formatTime = (timestamp: number) =>
+    new Date(timestamp * 1000).toLocaleTimeString("ru-RU", {
+      hour: "2-digit",
+      minute: "2-digit",
+    })
 
   const dispatch = useAppDispatch()
   const { currentWeather, error } = useAppSelector(state => state.WEATHER_CARD)
@@ -65,6 +77,16 @@ export default function CreateWeathers() {
           city: data.name,
           celsius: data.main.temp,
           icon: data.weather[0].icon,
+          FeelsLike: data.main.feels_like,
+          tempMin: data.main.temp_min,
+          tempMax: data.main.temp_max,
+          pressure: data.main.pressure,
+          visibility: data.visibility,
+          speed: data.wind.speed,
+          deg: data.wind.deg,
+          sunrise: data.sys.sunrise,
+          sunset: data.sys.sunset,
+          humidity: data.main.humidity,
         }
 
         // Сохраняем только один объект
@@ -74,16 +96,15 @@ export default function CreateWeathers() {
           alert(error.message)
           return
         }
-      
 
         const message =
           error?.response?.data?.message ||
           error?.response?.data?.error ||
-          error?.message|| 
-          'Unknown API error'
-          
+          error?.message ||
+          "Unknown API error"
+
         dispatch(employeeSliceAction.setError(message))
-        alert("Пожалуйста, введите название города")
+        // alert("Пожалуйста, введите название города")
       }
     },
   })
@@ -98,9 +119,9 @@ export default function CreateWeathers() {
     if (!currentWeather) return
     dispatch(employeeSliceAction.saveWeater(currentWeather))
     dispatch(employeeSliceAction.clearCurrentWeather())
-    setTimeout(()=> {alert("Информация сохранена"), 0})
-    
-    
+    setTimeout(() => {
+      (alert("Информация сохранена"), 0)
+    })
   }
 
   return (
@@ -145,9 +166,59 @@ export default function CreateWeathers() {
               />
             </ImgWapper>
           </DivWrapper>
+          <DataUotputDiv>
+            <DataCityDiv>
+              <DataCityDiv></DataCityDiv>
+              <OutputP>Feels like:</OutputP>
+              <TitelData >{currentWeather.FeelsLike}</TitelData >
+              </DataCityDiv>
+            <WrapperSun >
+            <SunDiv>
+              <ImgSin src={ImgSunrise} alt="sun" />
+              <TitelData >{formatTime(currentWeather.sunrise)}</TitelData >
+            </SunDiv>
+            <SunDiv>
+              <ImgSin src={ImgSunset} alt="sun" />
+              <TitelData >{formatTime(currentWeather.sunset)}</TitelData >
+            </SunDiv>
+            </WrapperSun>
+          </DataUotputDiv>
+          <DataUotputDiv>
+            <DataCityDiv>
+              <OutputP>Temp min:</OutputP>
+              <TitelData >{currentWeather.tempMin}</TitelData >
+            </DataCityDiv>
+            <DataCityDiv>
+              <OutputP>Temp max:</OutputP>
+              <TitelData >{currentWeather.tempMax}</TitelData >
+            </DataCityDiv>
+          </DataUotputDiv>
+          <DataUotputDiv>
+            <DataCityDiv>
+                <OutputP>Pressure:</OutputP>
+                <TitelData >{currentWeather.pressure}</TitelData >
+            </DataCityDiv>
+            <DataCityDiv>
+              <OutputP>Visibility:</OutputP>
+              <TitelData >{currentWeather.visibility}</TitelData >
+         </DataCityDiv>
+          </DataUotputDiv>
+          <DataUotputDiv>
+          <DataCityDiv>
+              <OutputP>Speed:</OutputP>
+              <TitelData >{currentWeather.speed}</TitelData>
+          </DataCityDiv>
+          <DataCityDiv>
+            <OutputP>Deg:</OutputP>
+          <TitelData >{currentWeather.deg}</TitelData >
+          </DataCityDiv>
+          </DataUotputDiv>
+          <OutputP>Humidity:</OutputP>
+          <TitelData >{currentWeather.humidity}</TitelData >
+          
           <ButtonWrapper>
             <WidthButton>
-              <Button type="button" name={"Save"} onClick={onSave}  weatherB/>
+              <Button type="button" name={"Save"} onClick={onSave} weatherB />
             </WidthButton>
             <WidthButton>
               <Button
@@ -160,7 +231,7 @@ export default function CreateWeathers() {
           </ButtonWrapper>
         </OutputDiv>
       )}
-      {!error && <ErrorOutput />}
+      {error && <ErrorOutput />}
     </FormStyle>
   )
 }
