@@ -57,7 +57,8 @@ export const CityCelsiusWrapper = styled.div`
 `;
 
 export const GetImg = styled.img`
-  
+  width: 150px;
+  height: 100px;
 `;
 
 export const ImgWapper = styled.div`
@@ -73,6 +74,11 @@ export const ButtonWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const Button = styled.button`
+
+
+`
 
 export const WidthButton = styled.div`
   width: 155px;

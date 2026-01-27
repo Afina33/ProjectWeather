@@ -1,5 +1,5 @@
 
-import OutputWeathers from '../outputWeathers/outputWeathers'
+import OutputWeathers from '../outputWeathers/OutputWeathers'
 
 export default function Weathers() {
     return(

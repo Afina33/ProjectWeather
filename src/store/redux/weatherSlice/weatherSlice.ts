@@ -40,9 +40,9 @@ export const weatherSlice = createAppSlice({
       state.error = undefined
     },
 
-//   deleteCardsAll(state: weatherInitialState) {
-//   state.weatherData = []
-// },
+  deleteCardsAll(state: weatherInitialState) {
+  state.weatherData = []
+},
     clearCurrentWeather(state) {
     state.currentWeather = undefined;
   },

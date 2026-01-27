@@ -22,3 +22,7 @@ export const WeatherCard = styled.div`
   align-items: center;
   flex-direction: column;
 `
+
+export const WrapperButtonDeleteAll = styled.div`
+width: 100%;
+`

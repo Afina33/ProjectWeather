@@ -1,44 +1,81 @@
-import { useAppSelector } from "store/hooks"
-import { OutputWeathersWrapper, WeatherCard } from "./styles"
+import { useAppDispatch, useAppSelector } from "store/hooks"
 import {
+  OutputWeathersWrapper,
+  WeatherCard,
+  WrapperButtonDeleteAll,
+} from "./styles"
+import {
+  ButtonWrapper,
   CelsiusTeitel,
   CityCelsiusWrapper,
   CityName,
+  DivWrapper,
   GetImg,
   ImgWapper,
+  WidthButton,
 } from "../CreateWeathers/styles"
+import Button from "components/Button/Button"
 
-export default function outputWeathers() {
+import { employeeSliceAction } from "store/redux/weatherSlice/weatherSlice"
+
+export default function OutputWeathers() {
+  const dispatch = useAppDispatch()
   const weatherList = useAppSelector(state => state.WEATHER_CARD.weatherData)
 
-  if (!weatherList.length) {
-    return <p>Сохранённых городов нет</p>
+  const onDelete = (idCard: string) => {
+    dispatch(employeeSliceAction.deleteCard(idCard))
+  }
+
+  const deleteAllCards = () => {
+    dispatch(employeeSliceAction.deleteCardsAll())
   }
 
   return (
     <OutputWeathersWrapper>
       {weatherList.map(weather => (
         <WeatherCard key={weather.id}>
-          <CityCelsiusWrapper>
-            <CelsiusTeitel>{Math.round(weather.celsius)}°C</CelsiusTeitel>
-            <CityName>{weather.city}</CityName>
-          </CityCelsiusWrapper>
-          <ImgWapper>
-            <GetImg
-              src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
-              alt={weather.city}
-            />
-            <GetImg
-              src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
-              alt={weather.city}
-            />
-            <GetImg
-              src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
-              alt={weather.city}
-            />
-          </ImgWapper>
+          <DivWrapper>
+            <CityCelsiusWrapper>
+              <CelsiusTeitel>{Math.round(weather.celsius)}°C</CelsiusTeitel>
+              <CityName>{weather.city}</CityName>
+            </CityCelsiusWrapper>
+
+            <ImgWapper>
+              <GetImg
+                src={`https://openweathermap.org/img/w/${weather.icon}.png`}
+                alt={weather.city}
+              />
+              <GetImg
+                src={`https://openweathermap.org/img/w/${weather.icon}.png`}
+                alt={weather.city}
+              />
+              <GetImg
+                src={`https://openweathermap.org/img/w/${weather.icon}.png`}
+                alt={weather.city}
+              />
+            </ImgWapper>
+          </DivWrapper>
+
+          <ButtonWrapper>
+            <WidthButton>
+              <Button
+                type="button"
+                name="Delete"
+                onClick={() => onDelete(weather.id)}
+              />
+            </WidthButton>
+          </ButtonWrapper>
         </WeatherCard>
       ))}
+      {weatherList.length >= 2 && (
+        <WrapperButtonDeleteAll>
+          <Button
+            type="button"
+            name="Delete all cards"
+            onClick={deleteAllCards}
+          />
+        </WrapperButtonDeleteAll>
+      )}
     </OutputWeathersWrapper>
   )
 }
