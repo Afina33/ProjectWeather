@@ -27,8 +27,9 @@ import Button from "components/Button/Button"
 import { ErrorOutput } from "../ErrorOutput/ErrorOutput"
 import { currentWeather } from "Layout/types"
 
+
 const validationSchema = Yup.object().shape({
-  [CITY_FORM_VALUE.CITY]: Yup.string().required("Введите город"),
+  [CITY_FORM_VALUE.CITY]: Yup.string().required("Введите город").trim(),
 })
 
 export default function CreateWeathers() {
@@ -69,17 +70,20 @@ export default function CreateWeathers() {
         // Сохраняем только один объект
         dispatch(employeeSliceAction.setCurrentWeather(CityData))
       } catch (error: any) {
-        if (error.name === "ValidationError") {
+        if (error === "ValidationError") {
           alert(error.message)
           return
         }
+      
 
         const message =
           error?.response?.data?.message ||
           error?.response?.data?.error ||
-          error?.message ||
-          alert("Пожалуйста, введите название города")
+          error?.message|| 
+          'Unknown API error'
+          
         dispatch(employeeSliceAction.setError(message))
+        alert("Пожалуйста, введите название города")
       }
     },
   })
@@ -94,7 +98,9 @@ export default function CreateWeathers() {
     if (!currentWeather) return
     dispatch(employeeSliceAction.saveWeater(currentWeather))
     dispatch(employeeSliceAction.clearCurrentWeather())
-    alert("Информация сохранена")
+    setTimeout(()=> {alert("Информация сохранена"), 0})
+    
+    
   }
 
   return (
@@ -107,6 +113,7 @@ export default function CreateWeathers() {
           label=""
           value={formik.values[CITY_FORM_VALUE.CITY]}
           onChange={formik.handleChange}
+          error={formik.errors[CITY_FORM_VALUE.CITY]}
         />
         <ButtonStyle>
           <Button type="submit" name={"Search"} />
@@ -139,13 +146,12 @@ export default function CreateWeathers() {
             </ImgWapper>
           </DivWrapper>
           <ButtonWrapper>
-            {/* <WidthButton><Button type="button" name={"Save"} onClick={onSave} /></WidthButton>
-            <WidthButton><Button type="button" name={"Delete"} onClick={() => onDelete(currentWeather!)} /></WidthButton> */}
             <WidthButton>
-              <Button type="button" name={"Save"} onClick={onSave} />
+              <Button type="button" name={"Save"} onClick={onSave}  weatherB/>
             </WidthButton>
             <WidthButton>
               <Button
+                weatherB
                 type="button"
                 name={"Delete"}
                 onClick={() => onDelete(currentWeather!)}

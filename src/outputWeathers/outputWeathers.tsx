@@ -61,6 +61,7 @@ export default function OutputWeathers() {
               <Button
                 type="button"
                 name="Delete"
+                weatherB
                 onClick={() => onDelete(weather.id)}
               />
             </WidthButton>
@@ -72,6 +73,7 @@ export default function OutputWeathers() {
           <Button
             type="button"
             name="Delete all cards"
+        
             onClick={deleteAllCards}
           />
         </WrapperButtonDeleteAll>
