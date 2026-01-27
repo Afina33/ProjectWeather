@@ -1,26 +1,44 @@
-import { useAppSelector } from "store/hooks";
+import { useAppSelector } from "store/hooks"
+import { OutputWeathersWrapper, WeatherCard } from "./styles"
+import {
+  CelsiusTeitel,
+  CityCelsiusWrapper,
+  CityName,
+  GetImg,
+  ImgWapper,
+} from "../CreateWeathers/styles"
 
 export default function outputWeathers() {
-  const weatherList = useAppSelector(
-    state => state.WEATHER_CARD.weatherData
-  );
+  const weatherList = useAppSelector(state => state.WEATHER_CARD.weatherData)
 
   if (!weatherList.length) {
-    return <p>Сохранённых городов нет</p>;
+    return <p>Сохранённых городов нет</p>
   }
 
   return (
-    <div>
+    <OutputWeathersWrapper>
       {weatherList.map(weather => (
-        <div key={weather.id}>
-          <h3>{weather.city}</h3>
-          <p>{Math.round(weather.celsius)}°C</p>
-          <img
-            src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
-            alt={weather.city}
-          />
-        </div>
+        <WeatherCard key={weather.id}>
+          <CityCelsiusWrapper>
+            <CelsiusTeitel>{Math.round(weather.celsius)}°C</CelsiusTeitel>
+            <CityName>{weather.city}</CityName>
+          </CityCelsiusWrapper>
+          <ImgWapper>
+            <GetImg
+              src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+              alt={weather.city}
+            />
+            <GetImg
+              src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+              alt={weather.city}
+            />
+            <GetImg
+              src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}
+              alt={weather.city}
+            />
+          </ImgWapper>
+        </WeatherCard>
       ))}
-    </div>
-  );
+    </OutputWeathersWrapper>
+  )
 }

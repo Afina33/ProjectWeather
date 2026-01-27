@@ -69,8 +69,17 @@ export default function CreateWeathers() {
         // Сохраняем только один объект
         dispatch(employeeSliceAction.setCurrentWeather(CityData))
       } catch (error: any) {
-        alert("Пожалуйста, введите название города")
-        dispatch(employeeSliceAction.setError(error));
+        if (error.name === "ValidationError") {
+            alert(error.message)
+            return
+      }
+
+
+      const message =
+        error?.response?.data?.message ||
+        error?.response?.data?.error ||
+        error?.message || alert("Пожалуйста, введите название города")
+        dispatch(employeeSliceAction.setError(message));
       }
     },
   })
