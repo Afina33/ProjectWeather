@@ -1,55 +1,50 @@
 import styled from "@emotion/styled";
+import { ButtonComponentProps } from "./types";
 
-interface ButtonComponentProps {
-  $isRed: boolean;
-}
-
-const generateButtonColor = (isRed: boolean, disabled: boolean | undefined) => {
-  if (disabled) {
-    return "#acacacff";
-  } else {
-    if (isRed) {
-      return "#fc3333ff" ;
-    } else {
-      return "#1f27f5";
-    }
-  }
-};
-
-
-const generateButtonColorOnHover = (
-  isRed: boolean,
-  disabled: boolean | undefined
+const generateButtonColor = (
+  isRed?: boolean,
+  disabled?: boolean,
+  weatherB?: boolean
 ) => {
-  if (disabled) {
-    return "#acacacff";
-  } else {
-    if (isRed) {
-      return "#ff6868ff";
-    } else {
-      return "rgb(97, 102, 255)";
-    }
-  }
+  if (disabled) return "#acacacff";
+  if (weatherB) return "transparent"; // фон для weatherB всегда прозрачный
+  if (isRed) return "#fc3333ff";
+  return "#3678B4";
 };
+
+const generateBorder = (weatherB?: boolean) =>
+  weatherB ? "1px solid #ffffff" : "none";
 
 export const ButtonComponent = styled.button<ButtonComponentProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-  outline: none;
-  border: none;
-  padding: 0;
+
   height: 50px;
   width: 100%;
-  background-color: ${({ $isRed, disabled }) =>
-    generateButtonColor($isRed, disabled)};
+  border-radius: 50px;
+
+  border: ${({ $weatherB }) => generateBorder($weatherB)};
+
+  background-color: ${({ $isRed, $weatherB, disabled }) =>
+    generateButtonColor($isRed, disabled, $weatherB)};
+
   color: #ffffff;
   font-size: 20px;
   font-weight: bold;
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+
+  cursor: ${({ disabled }) =>
+    disabled ? "not-allowed" : "pointer"};
+
+  transition: border 0.3s ease;
 
   &:hover {
-    background-color: ${({ $isRed, disabled }) =>
-      generateButtonColorOnHover($isRed, disabled)};
+    /* Если это weatherB и кнопка не disabled — бордер серый */
+    ${({ $weatherB, disabled }) =>
+      $weatherB && !disabled ? "border: 1px solid #6b9eeb;" : ""}
+    
+    /* Фон не меняется, остаётся прозрачным для weatherB */
+    background-color: ${({ $weatherB, $isRed, disabled }) =>
+      $weatherB ? "transparent" : $isRed ? "#ff6868ff" : "#4c84b7"};
   }
 `;

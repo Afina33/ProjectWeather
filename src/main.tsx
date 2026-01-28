@@ -12,6 +12,7 @@ if (container) {
   root.render(
     <Provider store={store}>
       <GlobalStyles />
+     
       <App />
     </Provider>,
   )
